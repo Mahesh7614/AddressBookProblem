@@ -85,6 +85,15 @@ namespace AddressBook
                 Console.Write("Enter 'e' to edit contact using mobile number otherwise Enter any key : ");
                 edit = Console.ReadLine();            
             }
+            Console.Write("Enter 'd' to delete contact using Mobile Number : ");
+            var delete = Console.ReadLine();
+            while (delete == "d")
+            {
+                Console.Write("Enter Mobile Number Which you want to Delete Contact : ");
+                contactDetailsRepository.DeleteContact(Convert.ToInt64(Console.ReadLine()));
+                Console.Write("Enter 'd' to Delete contact using mobile number otherwise Enter any key : ");
+                delete = Console.ReadLine();
+            }
             contactDetailsRepository.DisplayContact();
         }
     }

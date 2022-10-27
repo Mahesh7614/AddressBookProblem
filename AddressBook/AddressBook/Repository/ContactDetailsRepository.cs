@@ -20,6 +20,7 @@ namespace AddressBook.Repository
             var obj = contactDetailDictionary[mobilenumber];
             contactDetailDictionary.Remove(mobilenumber);
             Console.WriteLine("Select Which Detail you want to Edit : \n1. First Name \n2. Last Name \n3. Mobile Number \n4. Email ID \n5. Address \n6. City \n7. District \n8. State \n9. Zip Code");
+            Console.Write("Enter the Selected Number to Edit : ");
             int editDetail = Convert.ToInt32(Console.ReadLine());
             switch (editDetail)
             {
@@ -99,6 +100,10 @@ namespace AddressBook.Repository
                 }
             }
         }
+        public void DeleteContact(long mobNumber)
+        {
+            contactDetailDictionary.Remove(mobNumber);
+        }
         public void DisplayContact()
         {
             foreach (var item in contactDetailDictionary)
@@ -112,7 +117,6 @@ namespace AddressBook.Repository
                 Console.WriteLine("District is : " + item.Value.District);
                 Console.WriteLine("State is : " + item.Value.State);               
                 Console.WriteLine("Zip Code is : " + item.Value.Zip);
-                Console.WriteLine();
             }
         }
 

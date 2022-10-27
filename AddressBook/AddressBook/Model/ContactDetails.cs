@@ -16,6 +16,6 @@ namespace AddressBook.Model
         public string? Address { get; set; }
         public string? State { get; set; }
         public string? City { get; set; }
-        public int? zip { get; set; }
+        public int? Zip { get; set; }
     }
 }

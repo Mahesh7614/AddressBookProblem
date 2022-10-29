@@ -12,7 +12,8 @@ namespace AddressBook
             Console.WriteLine("Welcome to Address Book \n");
             
             ContactDetails contact = null;
-            
+            ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
+
             Console.WriteLine("Enter y to Enter Contact Details : ");
             var input = Console.ReadLine();
             
@@ -57,10 +58,9 @@ namespace AddressBook
                     Zip = zip
 
                 };
+                contactDetailsRepository.AddContactDetails(contact);
             }
             
-            ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
-            contactDetailsRepository.AddContactDetails(contact);
             contactDetailsRepository.DisplayContact();
 
         }

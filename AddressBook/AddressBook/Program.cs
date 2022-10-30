@@ -16,10 +16,6 @@ namespace AddressBook
             ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
 
             Console.Write("Enter 'y' to Enter Contact Details : ");
-
-
-            Console.WriteLine("Enter y to Enter Contact Details : ");
-
             var input = Console.ReadLine();
             
             while (input == "y")

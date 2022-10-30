@@ -85,6 +85,16 @@ namespace AddressBook
                 Console.Write("Enter 'e' to edit contact using mobile number otherwise Enter any key : ");
                 edit = Console.ReadLine();            
             }
+            Console.Write("Enter 'f' to edit contact using First Name : ");
+            var editf = Console.ReadLine();
+            while (editf == "f")
+            {
+                Console.Write("Enter First Name : ");
+                contactDetailsRepository.EditContactDetailsByFirstName(Console.ReadLine());
+
+                Console.Write("Enter 'f' to edit contact using First Name otherwise Enter any key : ");
+                editf = Console.ReadLine();
+            }
             contactDetailsRepository.DisplayContact();
         }
     }

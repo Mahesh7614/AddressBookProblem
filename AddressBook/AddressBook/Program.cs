@@ -16,14 +16,13 @@ namespace AddressBook
             ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
 
             Console.Write("Enter 'y' to Enter Contact Details : ");
-
-
-            Console.WriteLine("Enter y to Enter Contact Details : ");
-
             var input = Console.ReadLine();
             
             while (input == "y")
             {
+                Console.Write("Enter Unique Name to Address Book : ");
+                string uniqueName = Console.ReadLine();
+
                 Console.Write("Enter First Name : ");
                 string firstName = Console.ReadLine();
 
@@ -56,6 +55,7 @@ namespace AddressBook
 
                 contact = new ContactDetails()
                 {
+                    UniqueName = uniqueName,
                     FirstName = firstName,
                     LastName = lastName,
                     MobileNumber = mobileNumber,
@@ -69,9 +69,6 @@ namespace AddressBook
                 };
                 contactDetailsRepository.AddContactDetails(contact);
             }
-            
-
-            
             Console.Write("Enter 'g' to get Contact Details by First Name : ");           
             var name = Console.ReadLine();          
             while (name == "g")
@@ -81,14 +78,14 @@ namespace AddressBook
                 Console.Write("Enter 'g' to get Contact Details by First Name otherwise Enter any key : ");
                 name = Console.ReadLine();            
             }
-            Console.Write("Enter 'e' to edit contact using mobile number : ");           
+            Console.Write("Enter 'e' to edit contact using Unique Name : ");           
             var edit = Console.ReadLine();          
             while (edit == "e")
             {
-                Console.Write("Enter Mobile Number : ");
-                contactDetailsRepository.EditContactDetails(Convert.ToInt64(Console.ReadLine()));
+                Console.Write("Enter Unique Name : ");
+                contactDetailsRepository.EditContactDetails(Console.ReadLine());
                
-                Console.Write("Enter 'e' to edit contact using mobile number otherwise Enter any key : ");
+                Console.Write("Enter 'e' to edit contact using Unique Name otherwise Enter any key : ");
                 edit = Console.ReadLine();            
             }
             Console.Write("Enter 'f' to edit contact using First Name : ");
@@ -101,13 +98,13 @@ namespace AddressBook
                 Console.Write("Enter 'f' to edit contact using First Name otherwise Enter any key : ");
                 editf = Console.ReadLine();
             }
-            Console.Write("Enter 'd' to delete contact using Mobile Number : ");
+            Console.Write("Enter 'd' to delete contact using Unique Name : ");
             var delete = Console.ReadLine();
             while (delete == "d")
             {
-                Console.Write("Enter Mobile Number Which you want to Delete Contact : ");
-                contactDetailsRepository.DeleteContact(Convert.ToInt64(Console.ReadLine()));
-                Console.Write("Enter 'd' to Delete contact using mobile number otherwise Enter any key : ");
+                Console.Write("Enter Unique Name Which you want to Delete Contact : ");
+                contactDetailsRepository.DeleteContact(Console.ReadLine());
+                Console.Write("Enter 'd' to Delete contact using Unique Name otherwise Enter any key : ");
                 delete = Console.ReadLine();
             }
 

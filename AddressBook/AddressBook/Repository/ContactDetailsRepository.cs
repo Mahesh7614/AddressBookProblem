@@ -9,16 +9,16 @@ namespace AddressBook.Repository
 {
     internal class ContactDetailsRepository
     {
-        public Dictionary<long, ContactDetails> contactDetailDictionary = new Dictionary<long, ContactDetails>();
+        public Dictionary<string, ContactDetails> contactDetailDictionary = new Dictionary<string, ContactDetails>();
 
         public void AddContactDetails(ContactDetails contactDetails)
         {
-            contactDetailDictionary.Add(Convert.ToInt64(contactDetails.MobileNumber), contactDetails);
+            contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
         }
-        public void EditContactDetails(long mobilenumber)
+        public void EditContactDetails(string UniqueName)
         {
-            var obj = contactDetailDictionary[mobilenumber];
-            contactDetailDictionary.Remove(mobilenumber);
+            var obj = contactDetailDictionary[UniqueName];
+            contactDetailDictionary.Remove(UniqueName);
             Console.WriteLine("Select Which Detail you want to Edit : \n1. First Name \n2. Last Name \n3. Mobile Number \n4. Email ID \n5. Address \n6. City \n7. District \n8. State \n9. Zip Code");
             Console.Write("Enter the Selected Number to Edit : ");
             int editDetail = Convert.ToInt32(Console.ReadLine());
@@ -28,55 +28,55 @@ namespace AddressBook.Repository
                     Console.Write("Enter First Name to Update : ");
                     string firstName =Console.ReadLine();
                     obj.FirstName = firstName;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 2:
                     Console.Write("Enter Last Name to Update : ");
                     string lastName =Console.ReadLine();
                     obj.LastName = lastName;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 3:
                     Console.Write("Enter Mobile Number to Update : ");
                     long mobNumber =Convert.ToInt64(Console.ReadLine());
                     obj.MobileNumber = mobNumber;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 4:
                     Console.Write("Enter Email ID to Update : ");
                     string email =Console.ReadLine();
                     obj.Email = email;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 5:
                     Console.Write("Enter Address to Update : ");
                     string address =Console.ReadLine();
                     obj.Address = address;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 6:
                     Console.Write("Enter City to Update : ");
                     string city = Console.ReadLine();
                     obj.City = city;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 7:
                     Console.Write("Enter District to Update : ");
                     string district = Console.ReadLine();
                     obj.District = district;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 8:
                     Console.Write("Enter State to Update : ");
                     string state =Console.ReadLine();
                     obj.State = state;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 9:
                     Console.Write("Enter First Name to Update : ");
                     int zipcode =Convert.ToInt32(Console.ReadLine());
                     obj.Zip = zipcode;
-                    contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
+                    contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
             }
             
@@ -84,7 +84,7 @@ namespace AddressBook.Repository
         public void EditContactDetailsByFirstName(string fName)
         {
             var persiondetail = GetUsingFirstNameDetail(fName);
-            contactDetailDictionary.Remove(Convert.ToInt64(persiondetail.MobileNumber));
+            contactDetailDictionary.Remove(persiondetail.UniqueName);
             Console.WriteLine("Select Which Detail you want to Edit : \n1. First Name \n2. Last Name \n3. Mobile Number \n4. Email ID \n5. Address \n6. City \n7. District \n8. State \n9. Zip Code");
             Console.Write("Enter the Selected Number to Edit : ");
             int editDetail = Convert.ToInt32(Console.ReadLine());
@@ -94,55 +94,55 @@ namespace AddressBook.Repository
                     Console.Write("Enter First Name to Update : ");
                     string firstName = Console.ReadLine();
                     persiondetail.FirstName = firstName;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 2:
                     Console.Write("Enter Last Name to Update : ");
                     string lastName = Console.ReadLine();
                     persiondetail.LastName = lastName;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 3:
                     Console.Write("Enter Mobile Number to Update : ");
                     long mobNumber = Convert.ToInt64(Console.ReadLine());
                     persiondetail.MobileNumber = mobNumber;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 4:
                     Console.Write("Enter Email ID to Update : ");
                     string email = Console.ReadLine();
                     persiondetail.Email = email;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 5:
                     Console.Write("Enter Address to Update : ");
                     string address = Console.ReadLine();
                     persiondetail.Address = address;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 6:
                     Console.Write("Enter City to Update : ");
                     string city = Console.ReadLine();
                     persiondetail.City = city;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 7:
                     Console.Write("Enter District to Update : ");
                     string district = Console.ReadLine();
                     persiondetail.District = district;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 8:
                     Console.Write("Enter State to Update : ");
                     string state = Console.ReadLine();
                     persiondetail.State = state;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
                 case 9:
                     Console.Write("Enter First Name to Update : ");
                     int zipcode = Convert.ToInt32(Console.ReadLine());
                     persiondetail.Zip = zipcode;
-                    contactDetailDictionary.Add(Convert.ToInt64(persiondetail.MobileNumber), persiondetail);
+                    contactDetailDictionary.Add(persiondetail.UniqueName, persiondetail);
                     break;
             }
         }
@@ -176,9 +176,9 @@ namespace AddressBook.Repository
                 }
             }
         }
-        public void DeleteContact(long mobNumber)
+        public void DeleteContact(string uniqueName)
         {
-            contactDetailDictionary.Remove(mobNumber);
+            contactDetailDictionary.Remove(uniqueName);
         }
         public void DisplayContact()
         {

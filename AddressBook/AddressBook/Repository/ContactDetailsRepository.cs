@@ -73,7 +73,7 @@ namespace AddressBook.Repository
                     contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
                     break;
                 case 9:
-                    Console.Write("Enter First Name to Update : ");
+                    Console.Write("Enter Zip Code to Update : ");
                     int zipcode =Convert.ToInt32(Console.ReadLine());
                     obj.Zip = zipcode;
                     contactDetailDictionary.Add(Convert.ToInt64(obj.MobileNumber), obj);
@@ -100,9 +100,25 @@ namespace AddressBook.Repository
                 }
             }
         }
+        public ContactDetails GetUsingByFirstName(string firstName)
+        {
+            foreach (var item in contactDetailDictionary)
+            {
+                if (item.Value.FirstName == firstName)
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
         public void DeleteContact(long mobNumber)
         {
             contactDetailDictionary.Remove(mobNumber);
+        }
+        public void DeleteContactByFirstName(string fName)
+        {
+            var objfName = GetUsingByFirstName(fName);
+            contactDetailDictionary.Remove(Convert.ToInt64(objfName.MobileNumber));
         }
         public void DisplayContact()
         {

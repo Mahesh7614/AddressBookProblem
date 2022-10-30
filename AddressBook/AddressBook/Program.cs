@@ -14,7 +14,12 @@ namespace AddressBook
 
             ContactDetails contact = null;
             ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
+
             Console.Write("Enter 'y' to Enter Contact Details : ");
+
+
+            Console.WriteLine("Enter y to Enter Contact Details : ");
+
             var input = Console.ReadLine();
             
             while (input == "y")
@@ -65,6 +70,7 @@ namespace AddressBook
                 contactDetailsRepository.AddContactDetails(contact);
             }
             
+
             
             Console.Write("Enter 'g' to get Contact Details by First Name : ");           
             var name = Console.ReadLine();          
@@ -94,6 +100,7 @@ namespace AddressBook
                 Console.Write("Enter 'd' to Delete contact using mobile number otherwise Enter any key : ");
                 delete = Console.ReadLine();
             }
+
             contactDetailsRepository.DisplayContact();
         }
     }

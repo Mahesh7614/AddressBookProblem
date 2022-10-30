@@ -15,6 +15,10 @@ namespace AddressBook
             ContactDetails contact = null;
             ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
 
+
+
+           
+
             Console.Write("Enter 'y' to Enter Contact Details : ");
             var input = Console.ReadLine();
             
@@ -106,6 +110,15 @@ namespace AddressBook
                 contactDetailsRepository.DeleteContact(Console.ReadLine());
                 Console.Write("Enter 'd' to Delete contact using Unique Name otherwise Enter any key : ");
                 delete = Console.ReadLine();
+            }
+            Console.Write("Enter 'df' to delete contact using FirstName : ");
+            var deletef = Console.ReadLine();
+            while (deletef == "df")
+            {
+                Console.Write("Enter First Name Which you want to Delete Contact : ");
+                contactDetailsRepository.DeleteContactByFirstName(Console.ReadLine());
+                Console.Write("Enter 'df' to Delete contact using First Name otherwise Enter any key : ");
+                deletef = Console.ReadLine();
             }
 
             contactDetailsRepository.DisplayContact();

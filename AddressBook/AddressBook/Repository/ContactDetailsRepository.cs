@@ -73,7 +73,7 @@ namespace AddressBook.Repository
                     contactDetailDictionary.Add(obj.UniqueName, obj);
                     break;
                 case 9:
-                    Console.Write("Enter First Name to Update : ");
+                    Console.Write("Enter Zip Code to Update : ");
                     int zipcode =Convert.ToInt32(Console.ReadLine());
                     obj.Zip = zipcode;
                     contactDetailDictionary.Add(obj.UniqueName, obj);
@@ -176,9 +176,27 @@ namespace AddressBook.Repository
                 }
             }
         }
+
         public void DeleteContact(string uniqueName)
         {
             contactDetailDictionary.Remove(uniqueName);
+        }
+
+        public ContactDetails GetUsingByFirstName(string firstName)
+        {
+            foreach (var item in contactDetailDictionary)
+            {
+                if (item.Value.FirstName == firstName)
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+        public void DeleteContactByFirstName(string fName)
+        {
+            var objfName = GetUsingByFirstName(fName);
+            contactDetailDictionary.Remove(objfName.UniqueName);
         }
         public void DisplayContact()
         {

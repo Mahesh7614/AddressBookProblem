@@ -1,19 +1,31 @@
 ﻿using AddressBook.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AddressBook.Repository
 {
     internal class ContactDetailsRepository
     {
         public Dictionary<string, ContactDetails> contactDetailDictionary = new Dictionary<string, ContactDetails>();
-
+        int noOfContact = 0;
         public void AddContactDetails(ContactDetails contactDetails)
         {
-            contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
+            if (noOfContact == 0)
+            {
+                contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
+                noOfContact++;
+
+            }
+            else
+            {
+                var contact = contactDetailDictionary.Where(x => x.Value.FirstName.Equals(contactDetails.FirstName.GetHashCode()));
+                if (contact == null)
+                {
+                    contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
+                }
+                else
+                {
+                    Console.WriteLine("\nThe Contact is Already Exists");
+                }
+            }
         }
         public void EditContactDetails(string UniqueName)
         {
@@ -25,27 +37,27 @@ namespace AddressBook.Repository
             {
                 case 1:
                     Console.Write("Enter First Name to Update : ");
-                    string firstName =Console.ReadLine();
+                    string firstName = Console.ReadLine();
                     obj.FirstName = firstName;
                     break;
                 case 2:
                     Console.Write("Enter Last Name to Update : ");
-                    string lastName =Console.ReadLine();
+                    string lastName = Console.ReadLine();
                     obj.LastName = lastName;
                     break;
                 case 3:
                     Console.Write("Enter Mobile Number to Update : ");
-                    long mobNumber =Convert.ToInt64(Console.ReadLine());
+                    long mobNumber = Convert.ToInt64(Console.ReadLine());
                     obj.MobileNumber = mobNumber;
                     break;
                 case 4:
                     Console.Write("Enter Email ID to Update : ");
-                    string email =Console.ReadLine();
+                    string email = Console.ReadLine();
                     obj.Email = email;
                     break;
                 case 5:
                     Console.Write("Enter Address to Update : ");
-                    string address =Console.ReadLine();
+                    string address = Console.ReadLine();
                     obj.Address = address;
                     break;
                 case 6:
@@ -60,16 +72,16 @@ namespace AddressBook.Repository
                     break;
                 case 8:
                     Console.Write("Enter State to Update : ");
-                    string state =Console.ReadLine();
+                    string state = Console.ReadLine();
                     obj.State = state;
                     break;
                 case 9:
                     Console.Write("Enter Zip Code to Update : ");
-                    int zipcode =Convert.ToInt32(Console.ReadLine());
+                    int zipcode = Convert.ToInt32(Console.ReadLine());
                     obj.Zip = zipcode;
                     break;
             }
-            
+
         }
         public void EditContactDetailsByFirstName(string fName)
         {
@@ -189,7 +201,7 @@ namespace AddressBook.Repository
                 Console.WriteLine("Address is : " + item.Value.Address);
                 Console.WriteLine("City is : " + item.Value.City);
                 Console.WriteLine("District is : " + item.Value.District);
-                Console.WriteLine("State is : " + item.Value.State);               
+                Console.WriteLine("State is : " + item.Value.State);
                 Console.WriteLine("Zip Code is : " + item.Value.Zip);
             }
         }

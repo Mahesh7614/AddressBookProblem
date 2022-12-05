@@ -1,8 +1,5 @@
 ﻿using AddressBook.Model;
 using AddressBook.Repository;
-using System;
-using System.Diagnostics.Contracts;
-using System.Net;
 
 namespace AddressBook
 {
@@ -14,10 +11,6 @@ namespace AddressBook
 
             ContactDetails contact = null;
             ContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository();
-
-
-
-           
 
             Console.Write("Enter 'y' to Enter Contact Details : ");
             var input = Console.ReadLine();
@@ -54,9 +47,6 @@ namespace AddressBook
                 Console.Write("Enter Zip Code : ");
                 int zip = Convert.ToInt32(Console.ReadLine());
 
-                Console.Write("Enter 'y' to Enter Contact Details or otherwise Enter any key : ");
-                input = Console.ReadLine();
-
                 contact = new ContactDetails()
                 {
                     UniqueName = uniqueName,
@@ -72,6 +62,8 @@ namespace AddressBook
 
                 };
                 contactDetailsRepository.AddContactDetails(contact);
+                Console.Write("Enter 'y' to Enter Contact Details or otherwise Enter any key : ");
+                input = Console.ReadLine();
             }
             Console.Write("Enter 'g' to get Contact Details by First Name : ");           
             var name = Console.ReadLine();          

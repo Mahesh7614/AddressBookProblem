@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Authentication;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AddressBook.Model
 {
-    internal class ContactDetails
+    public class ContactDetails
     {
         public string? UniqueName { get; set; }
         public string? FirstName { get; set; }
@@ -19,6 +13,22 @@ namespace AddressBook.Model
         public string? District { get; set; }
         public string? State { get; set; }
         public int? Zip { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+
+            if (!(obj is ContactDetails)) return false;
+
+            ContactDetails details = obj as ContactDetails;
+
+            return FirstName == details.FirstName && UniqueName == details.UniqueName &&  MobileNumber == details.MobileNumber && Email == details.Email;
+
+        }
+        public override int GetHashCode()
+        {
+            return FirstName.GetHashCode();
+        }
 
     }
 }

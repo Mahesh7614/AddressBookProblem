@@ -62,7 +62,7 @@ namespace AddressBook
 
                 };
                 contactDetailsRepository.AddContactDetails(contact);
-                Console.Write("Enter 'y' to Enter Contact Details or otherwise Enter any key : ");
+                Console.Write("\nEnter 'y' to Enter Contact Details or otherwise Enter any key : ");
                 input = Console.ReadLine();
             }
             Console.Write("Enter 'g' to get Contact Details by First Name : ");           

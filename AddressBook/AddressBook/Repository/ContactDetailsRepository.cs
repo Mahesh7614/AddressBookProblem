@@ -5,27 +5,17 @@ namespace AddressBook.Repository
     internal class ContactDetailsRepository
     {
         public Dictionary<string, ContactDetails> contactDetailDictionary = new Dictionary<string, ContactDetails>();
-        int noOfContact = 0;
         public void AddContactDetails(ContactDetails contactDetails)
         {
-            if (noOfContact == 0)
-            {
-                contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
-                noOfContact++;
-
-            }
-            else
-            {
-                var contact = contactDetailDictionary.Where(x => x.Value.FirstName.Equals(contactDetails.FirstName.GetHashCode()));
-                if (contact == null)
+                var contact = contactDetailDictionary.SingleOrDefault(detail => detail.Value.Equals(contactDetails));
+                if (contact.Value == null)
                 {
                     contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
                 }
                 else
                 {
-                    Console.WriteLine("\nThe Contact is Already Exists");
+                    Console.WriteLine($"\nThe Contact Name {contactDetails.FirstName} is Already Exists");
                 }
-            }
         }
         public void EditContactDetails(string UniqueName)
         {
@@ -81,7 +71,6 @@ namespace AddressBook.Repository
                     obj.Zip = zipcode;
                     break;
             }
-
         }
         public void EditContactDetailsByFirstName(string fName)
         {

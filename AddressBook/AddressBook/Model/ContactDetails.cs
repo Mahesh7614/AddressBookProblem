@@ -16,19 +16,13 @@ namespace AddressBook.Model
 
         public override bool Equals(object? obj)
         {
-            if (obj == null) return false;
-
-            if (!(obj is ContactDetails)) return false;
-
+            if (obj == null)
+            {
+                return false;
+            }
             ContactDetails details = obj as ContactDetails;
 
-            return FirstName == details.FirstName && UniqueName == details.UniqueName &&  MobileNumber == details.MobileNumber && Email == details.Email;
-
+            return details.FirstName == FirstName || details.UniqueName == UniqueName || details.MobileNumber == MobileNumber || details.Email == Email;
         }
-        public override int GetHashCode()
-        {
-            return FirstName.GetHashCode();
-        }
-
     }
 }

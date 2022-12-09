@@ -187,6 +187,7 @@ namespace AddressBook.Repository
             switch (intput)
             {
                 case 1:
+                    int cityCount = 0;
                     Console.Write("Enter City to Search Contact : ");
                     string city = Console.ReadLine();
                     var contacts = contactDetailDictionary.Where(detail => detail.Value.City == city);
@@ -208,11 +209,14 @@ namespace AddressBook.Repository
                         Console.Write("State is : " + contact.Value.State + "\n");
                         Console.Write("Zip Code is : " + contact.Value.Zip + "\n") ;
                         Console.WriteLine();
+                        cityCount++;
                     }
+                    Console.WriteLine($"There are {cityCount} Contact of {city} City");
                     Console.WriteLine();
                     break;
 
                 case 2:
+                    int stateCount = 0;
                     Console.Write("Enter State to Search Contact : ");
                     string state = Console.ReadLine();
                     var contactState = contactDetailDictionary.Where(detail => detail.Value.State == state);
@@ -234,7 +238,9 @@ namespace AddressBook.Repository
                         Console.Write("State is : " + contact.Value.State + "\n");
                         Console.Write("Zip Code is : " + contact.Value.Zip + "\n");
                         Console.WriteLine();
+                        stateCount++;
                     }
+                    Console.WriteLine($"There are {stateCount} Contact of {state} State");
                     Console.WriteLine();
                     break;
             }

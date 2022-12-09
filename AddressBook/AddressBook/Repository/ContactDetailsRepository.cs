@@ -1,4 +1,5 @@
 ﻿using AddressBook.Model;
+using System.Transactions;
 
 namespace AddressBook.Repository
 {
@@ -7,15 +8,15 @@ namespace AddressBook.Repository
         public Dictionary<string, ContactDetails> contactDetailDictionary = new Dictionary<string, ContactDetails>();
         public void AddContactDetails(ContactDetails contactDetails)
         {
-                var contact = contactDetailDictionary.SingleOrDefault(detail => detail.Value.Equals(contactDetails));
-                if (contact.Value == null)
-                {
-                    contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
-                }
-                else
-                {
-                    Console.WriteLine($"\nThe Contact Name {contactDetails.FirstName} is Already Exists");
-                }
+            var contact = contactDetailDictionary.SingleOrDefault(detail => detail.Value.Equals(contactDetails));
+            if (contact.Value == null)
+            {
+                contactDetailDictionary.Add(contactDetails.UniqueName, contactDetails);
+            }
+            else
+            {
+                Console.WriteLine($"\nThe Contact Name {contactDetails.FirstName} is Already Exists");
+            }
         }
         public void EditContactDetails(string UniqueName)
         {
@@ -157,7 +158,6 @@ namespace AddressBook.Repository
                 }
             }
         }
-
         public void DeleteContact(string uniqueName)
         {
             contactDetailDictionary.Remove(uniqueName);
@@ -178,6 +178,49 @@ namespace AddressBook.Repository
         {
             var objfName = GetUsingByFirstName(fName);
             contactDetailDictionary.Remove(objfName.UniqueName);
+        }
+        public void SearchContactUsingCityorState()
+        {
+            Console.WriteLine("\nEnter 1 to Search Contact Using City \n" +
+                "Enter 2 to Search Contact Using State");
+            int intput = Convert.ToInt32(Console.ReadLine());
+            switch (intput)
+            {
+                case 1:
+                    Console.Write("Enter City to Search Contact : ");
+                    string city = Console.ReadLine();
+                    var contacts = contactDetailDictionary.Where(detail => detail.Value.City == city);
+                    Console.WriteLine("\n******************** Contacts in Address Book ********************");
+                    if (!contacts.Any())
+                    {
+                        Console.WriteLine($"Contacts Not Available in Address Book of City {city}\n");
+                        return;
+                    }
+                    foreach (var contact in contacts)
+                    {
+                        Console.Write("Name is : " + contact.Value.FirstName + " " + contact.Value.LastName+"\n");
+                    }
+                    Console.WriteLine();
+                    break;
+
+                case 2:
+                    Console.Write("Enter State to Search Contact : ");
+                    string state = Console.ReadLine();
+                    var contactState = contactDetailDictionary.Where(detail => detail.Value.State == state);
+                    Console.WriteLine("\n******************** Contacts in Address Book ********************");
+                    if (!contactState.Any())
+                    {
+                        Console.WriteLine($"Contacts Not Available in Address Book of State {state}\n");
+                        return;
+                    }
+                    foreach (var contact in contactState)
+                    {
+                        Console.Write("Name is : " + contact.Value.FirstName + " " + contact.Value.LastName + "\n");
+                    }
+                    Console.WriteLine();
+                    break;
+            }
+
         }
         public void DisplayContact()
         {

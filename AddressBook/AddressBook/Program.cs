@@ -74,6 +74,14 @@ namespace AddressBook
                 Console.Write("Enter 'g' to get Contact Details by First Name otherwise Enter any key : ");
                 name = Console.ReadLine();            
             }
+            Console.Write("Enter 's' to Search Contact Details using city or state : ");
+            var cityOrState = Console.ReadLine();
+            while (cityOrState == "s")
+            {
+                contactDetailsRepository.SearchContactUsingCityorState();
+                Console.Write("Enter 's' to Search Contact Details using city or state : ");
+                cityOrState = Console.ReadLine();
+            }
             Console.Write("Enter 'e' to edit contact using Unique Name : ");           
             var edit = Console.ReadLine();          
             while (edit == "e")
